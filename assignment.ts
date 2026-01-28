@@ -33,7 +33,7 @@ const addNumbers = (num1: number, num2: number, callback: SumCallback): void => 
 };
 
 addNumbers(12, 34, (sum) => {
-    console.log(sum)
+    console.log(chalk.green(sum))
 });
 
 
@@ -45,7 +45,7 @@ const makeUppercase = (text: string, callback: UppercaseCallback): void => {
 };
 
 makeUppercase("sonal", (value) => {
-    console.log(value)
+    console.log(chalk.red.bold(value))
 });
 
 
@@ -57,7 +57,7 @@ const orderPizza = (callback: PizzaStatusCallback): void => {
         callback("Your pizza is ready!"), 3000);
 };
 orderPizza((status) => {
-    console.log(status)
+    console.log(chalk.yellow.bold.underline(status))
 });
 
 
@@ -70,7 +70,7 @@ const sendMessages = (callback: MessageCallback): void => {
     callback("Have a good day!");
 };
 sendMessages((message) => {
-    console.log(message)
+    console.log(chalk.blueBright.italic(message))
 });
 
 
@@ -84,7 +84,7 @@ const download = (url: string, callback: DownloadedCallback): void => {
     }, 2000);
 };
 download("https://sonal.com", (text) => {
-    console.log(text)
+    console.log(chalk.bgBlueBright.bold(text))
 });
 
 
@@ -122,7 +122,7 @@ const calculator = (a: number, b: number, operator: Operator, callback: MathResu
 // });
 
 calculator(10, 7, "multiply", (result) => {
-    console.log(result)
+    console.log(chalk.bgYellow.bold.black(result))
 });
 
 
