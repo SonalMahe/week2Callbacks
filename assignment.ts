@@ -33,7 +33,7 @@ const addNumbers = (num1: number, num2: number, callback: SumCallback): void => 
 };
 
 addNumbers(12, 34, (sum) => {
-    console.log(chalk.green(sum))
+    console.log(chalk.cyanBright(sum))
 });
 
 
@@ -84,7 +84,7 @@ const download = (url: string, callback: DownloadedCallback): void => {
     }, 2000);
 };
 download("https://sonal.com", (text) => {
-    console.log(chalk.bgBlueBright.bold(text))
+    console.log(chalk.yellow.bold(text))
 });
 
 
@@ -96,10 +96,10 @@ const numbers = (success: SuccessCallback, error: ErrorCallback): void => {
     Math.random() > .5 ? success() : error()
 };
 numbers(() => {
-    console.log("Success callback executed");
+    console.log(chalk.green ("Success callback executed"));
 },
     () => {
-        console.log("Error callback executed");
+        console.log(chalk.grey("Error callback executed"));
     });
 
 
