@@ -1,11 +1,14 @@
+import chalk from "chalk";
+
 // 1) Callback 
 type GreetingCallback = (message: string) => void;
 
 const greet = (callback: GreetingCallback): void => {
     callback("Hello from callback!");
 };
-greet((message) => { //call the function
-    console.log(message)
+
+greet((message) => { //(call the function)
+    console.log(chalk.green(message))
 });
 
 
@@ -16,8 +19,9 @@ type DelayedCallback = (message: string) => void;
 const sayHelloLater = (callback: DelayedCallback): void => {
     setTimeout(() => callback("Hi, I am late!"), 2000);
 };
+//execute the function 
 sayHelloLater((message) => {
-    console.log(message)
+    console.log(chalk.blue(message))
 });
 
 
@@ -36,8 +40,8 @@ addNumbers(12, 34, (sum) => {
 // 4. Uppercase Callback-
 type UppercaseCallback = (value: string) => void;
 
-const makeUppercase = (input: string, callback: UppercaseCallback): void => {
-    callback(input.toUpperCase());
+const makeUppercase = (text: string, callback: UppercaseCallback): void => {
+    callback(text.toUpperCase());
 };
 
 makeUppercase("sonal", (value) => {
@@ -83,12 +87,13 @@ download("https://sonal.com", (text) => {
     console.log(text)
 });
 
+
 //8.Success and Error Callback-
 type SuccessCallback = () => void;
 type ErrorCallback = () => void;
 
 const numbers = (success: SuccessCallback, error: ErrorCallback): void => {
-    Math.random() > 2 ? success() : error()
+    Math.random() > .5 ? success() : error()
 };
 numbers(() => {
     console.log("Success callback executed");
@@ -96,6 +101,7 @@ numbers(() => {
     () => {
         console.log("Error callback executed");
     });
+
 
 
 //9. Math with Different Operations-
@@ -110,4 +116,45 @@ const calculator = (a: number, b: number, operator: Operator, callback: MathResu
     if (operator === "multiply") result = a * b;
     if (operator === "divide") result = a / b;
 }
+
+// calculator(10,7 ,"subtract", (result)=>{
+//     console.log(result)
+// });
+
+calculator(10, 7, "multiply", (result) => {
+    console.log(result)
+});
+
+
+
+
+// 10. Chained Callbacks-
+type NextStepCallback = () => void;
+
+const stepOne = (next: NextStepCallback): void => {
+    setTimeout(() => {
+        console.log("Step 1 done");
+        next();
+    }, 1000);
+};
+
+const stepTwo = (next: NextStepCallback): void => {
+    setTimeout(() => {
+        console.log("Step 2 done");
+        next();
+    }, 1000);
+};
+
+const stepThree = (): void => {
+    setTimeout(() => {
+        console.log("Step 3 done");
+    }, 1000);
+};
+
+//execution for this -
+stepOne(() => {
+    stepTwo(() => {
+        stepThree();
+    });
+});
 
